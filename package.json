@@ -1,0 +1,31 @@
+{
+  "name": "brandai-docs-plugin",
+  "version": "1.0.0",
+  "description": "Library to integrate design system documentation websites with Brand.ai (https://brand.ai).",
+  "main": "src/docs-plugin.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandai/brandai-docs-plugin.git"
+  },
+  "author": "Brand.ai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brandai/brandai-docs-plugin/issues"
+  },
+  "homepage": "https://github.com/brandai/brandai-docs-plugin#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-minify": "0.0.12",
+    "gulp-rename": "^1.2.2",
+    "jsdom": "^9.2.1",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4"
+  }
+}
