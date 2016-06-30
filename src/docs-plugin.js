@@ -19,21 +19,21 @@
           // update elements with data-background-color value set
           var style = node.style;
           if (dataset.backgroundColor) {
-            var backgroundColor = dataAttributesLookup.colors[dataset.backgroundColor];
+            var backgroundColor = dataAttributesLookup.colors[dataset.backgroundColor.toLowerCase()];
             if (backgroundColor) {
               style.backgroundColor = backgroundColor.value;
             }
           }
           // update elements with data-color value set
           if (dataset.color) {
-            var color = dataAttributesLookup.colors[dataset.color];
+            var color = dataAttributesLookup.colors[dataset.color.toLowerCase()];
             if (color) {
               style.color = color.value;
             }
           }
           // update elements with data-typography value set
           if (dataset.typography) {
-            var typography = dataAttributesLookup.typography[dataset.typography];
+            var typography = dataAttributesLookup.typography[dataset.typography.toLowerCase()];
             if (typography) {
               style.color = typography.textColor;
               style.backgroundColor = typography.backgroundColor;
@@ -51,14 +51,14 @@
           }
           // update img elements with data-img-src value set
           if (dataset.imageSrc) {
-            var image = dataAttributesLookup.images[dataset.imageSrc];
+            var image = dataAttributesLookup.images[dataset.imageSrc.toLowerCase()];
             if (image) {
               node.src = image.url;
             }
           }
           // update elements with data-background-image value set
           if (dataset.backgroundImage) {
-            var image = dataAttributesLookup.images[dataset.backgroundImage];
+            var image = dataAttributesLookup.images[dataset.backgroundImage.toLowerCase()];
             if (image) {
               style.backgroundImage = 'url(' + image.url + ')';
             }
@@ -79,7 +79,13 @@
       }
       for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
-        styleDataMap[storedType][element.kebabName] = element;
+        if (element.kebabName) {
+          styleDataMap[storedType][element.kebabName] = element;
+        }
+        var name = element.name || element.displayName;
+        if (name) {
+          styleDataMap[storedType][name.toLowerCase()] = element;
+        }
       }
     }
 
@@ -90,12 +96,7 @@
       for (var i = 0; i < sections.length; i++) {
         var section = sections[i];
         var nestedElements = section[type];
-        if (nestedElements) {
-          for (var j = 0; j < nestedElements.length; j++) {
-            var element = nestedElements[j];
-            styleDataMap[storedType][element.kebabName] = element;
-          }
-        }
+        updateMapWithElements(styleDataMap, nestedElements, storedType);
       }
     };
 

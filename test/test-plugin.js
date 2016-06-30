@@ -34,6 +34,7 @@ describe('BrandAIDocsPlugin', function () {
         "<div id='color4' data-color='brand-4'></div>" +
         "<img id='image1' data-image-src='image-1'>Label</img>" +
         "<div id='image2' data-background-image='image-2'>x</img>" +
+        "<div id='image3' data-background-image='imAge 3' data-color='bRand 5'>x</img>" +
         "<span id='typography1' data-typography='typography-1'>Label</span>" +
         "<script src='./src/docs-plugin.js'></script>" +
         "</body></html>",
@@ -197,7 +198,25 @@ describe('BrandAIDocsPlugin', function () {
     });
   });
 
-  describe('load plugin and update be specific element tree', function () {
+  describe('update by display name', function(){
+    it('should update color and image styles by display name values', function(){
+      requests[0].respond(200, {'Content-Type': 'application/json'},
+        JSON.stringify({
+          colors: [{
+            name: 'Primary colors',
+            colors: [{name: 'branD 5', value: 'red'}]
+          }],
+          logos: [{displayName: 'Image 3', url: 'http://someBackgroundImage/'}]
+        })
+      );
+      var element = window.document.getElementById('image3');
+      expect(element.style.color).to.be.equal('red');
+      expect(element.style.backgroundImage).to.be.equal('url(http://someBackgroundImage/)');
+
+    })
+  });
+
+  describe('update be specific element tree', function () {
     it('should update color style tree but not the image which resides in different path', function () {
       var plugin = new window.BrandAIDocsPlugin('someUrl', {element: window.document.getElementById('color1')});
       requests[1].respond(200, {'Content-Type': 'application/json'},
