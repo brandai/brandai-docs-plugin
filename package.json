@@ -21,6 +21,9 @@
   "homepage": "https://github.com/brandai/brandai-docs-plugin#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-minify": "0.0.12",
+    "gulp-rename": "^1.2.2",
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
     "sinon": "^1.17.4"

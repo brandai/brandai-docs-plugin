@@ -1,3 +1,8 @@
+/*! brandai-docs-plugin.js
+   version : 1.0.0
+   license : MIT
+   https://github.com/brandai/brandai-docs-plugin
+*/
 (function (name, root, factory) {
     if (typeof module === 'object' && module.exports) {
       module.exports = factory(document);
