@@ -1,6 +1,6 @@
 {
   "name": "brandai-docs-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library to integrate design system documentation websites with Brand.ai (https://brand.ai).",
   "main": "src/docs-plugin.js",
   "directories": {
